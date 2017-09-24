@@ -11,7 +11,7 @@ let help = (api, threadID) => {
 var reactType = ":angry:";
 
 // Create simple echo bot
-login({email: deets.email, deets.pass}, (err, api) => {
+login({email: deets.email, password: deets.password}, (err, api) => {
     if(err) return console.error(err);
 
     api.listen((err, message) => {

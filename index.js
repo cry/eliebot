@@ -9,6 +9,7 @@ let help = (api, threadID) => {
 }
 
 var reactType = ":angry:";
+var wholesome_memes = fs.readdirSync('wholesome');
 
 // Create simple echo bot
 login({email: deets.email, password: deets.password}, (err, api) => {
@@ -22,6 +23,14 @@ login({email: deets.email, password: deets.password}, (err, api) => {
 
         if (message.body.indexOf("!echo") > -1) {
             api.sendMessage(message.body.substr(6), message.threadID);
+            return;
+        }
+
+        if (message.body.indexOf("!wholesome") > -1) {
+            var img = Math.round(Math.random() * 179 % (wholesome_memes.length - 1)); 
+    
+            api.sendMessage({body: "i would be wholesome to elie but no", attachment: fs.createReadStream(__dirname + '/wholesome/' + wholesome_memes[img])}, message.threadID);
+
             return;
         }
 

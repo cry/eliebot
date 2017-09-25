@@ -20,10 +20,22 @@ login({email: deets.email, password: deets.password}, (err, api) => {
             return;
         }
 
+        if (message.body.indexOf("!echo") > -1) {
+            api.sendMessage(message.body.substr(6), message.threadID);
+            return;
+        }
+
         if (message.body.indexOf("!react") > -1) {
             reactType = message.body.split(' ')[1];
+            
+            if (":love:haha:wow:sad:angry:like:dislike:".indexOf(reactType) == -1) {
+                api.sendMessage("Invalid react provided, angrily defaulting to angry.", message.threadID);
+                reactType = ":angry:";
 
-            api.sendMessage("Switching react to " + reactType, message.messageID);
+                return;
+            }
+
+            api.sendMessage("Switching react to " + reactType, message.threadID);
 
             return;
         }
@@ -45,6 +57,5 @@ login({email: deets.email, password: deets.password}, (err, api) => {
             return;
         }
 
-        //api.sendMessage(message.body, message.threadID);
     });
 });

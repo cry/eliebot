@@ -53,7 +53,7 @@ login({email: deets.email, password: deets.password}, (err, api) => {
 
         if (message.senderID == '100008167564917' || message.threadID == "100000052597716") {
 
-            var body = message.body.toLowerCase().split(' ');
+            var body = message.body.toLowerCase();
 
             data.count += body.match(/hi/g).length;
 

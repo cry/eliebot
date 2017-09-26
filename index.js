@@ -53,6 +53,8 @@ login({email: deets.email, password: deets.password}, (err, api) => {
 
         if (message.senderID == '100008167564917' || message.threadID == "100000052597716") {
 
+            api.setMessageReaction(reactType, message.messageID);
+
             var body = message.body.toLowerCase();
 
             var matches = body.match(/hi/g);
@@ -60,8 +62,6 @@ login({email: deets.email, password: deets.password}, (err, api) => {
             if (!matches) return;
 
             data.count += matches.length;
-
-            api.setMessageReaction(reactType, message.messageID);
 
             fs.writeFileSync("data.json", JSON.stringify(data))
 

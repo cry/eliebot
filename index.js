@@ -55,11 +55,7 @@ login({email: deets.email, password: deets.password}, (err, api) => {
 
             var body = message.body.toLowerCase().split(' ');
 
-            data.count += body.reduce((acc, val) => {
-                if (val === "hi") acc++;
-
-                return acc;
-            }, 0);
+            data.count += body.match(/hi/g).length;
 
             api.setMessageReaction(reactType, message.messageID);
 

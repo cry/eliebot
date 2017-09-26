@@ -11,7 +11,7 @@ let help = (api, threadID) => {
 var reactType = ":angry:";
 var wholesome_memes = fs.readdirSync('wholesome');
 
-var valid_reacts = {':love:':1, ':haha:':1, ':wow:':1, ':sad:':1, ':angry:':1, ':like:':1, ':dislike:':1};
+var valid_reacts = {':love:':'😍', ':haha:':'😆', ':wow:':'😮', ':sad:':'😢', ':angry:':'😠', ':like:':'👍', ':dislike:':'👎'};
 
 // Create simple echo bot
 login({email: deets.email, password: deets.password}, (err, api) => {
@@ -46,7 +46,7 @@ login({email: deets.email, password: deets.password}, (err, api) => {
                 return;
             }
 
-            api.sendMessage("Switching react to " + reactType, message.threadID);
+            api.sendMessage("Switching react to " + valid_reacts[reactType], message.threadID);
 
             return;
         }

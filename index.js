@@ -11,6 +11,8 @@ let help = (api, threadID) => {
 var reactType = ":angry:";
 var wholesome_memes = fs.readdirSync('wholesome');
 
+var valid_reacts = {':love:':1, ':haha:':1, ':wow:':1, ':sad:':1, ':angry:':1, ':like:':1, ':dislike:':1};
+
 // Create simple echo bot
 login({email: deets.email, password: deets.password}, (err, api) => {
     if(err) return console.error(err);
@@ -37,7 +39,7 @@ login({email: deets.email, password: deets.password}, (err, api) => {
         if (message.body.indexOf("!react") > -1) {
             reactType = message.body.split(' ')[1];
             
-            if (":love:haha:wow:sad:angry:like:dislike:".indexOf(reactType) == -1) {
+            if (!(reactType in valid_reacts)) {
                 api.sendMessage("Invalid react provided, angrily defaulting to angry.", message.threadID);
                 reactType = ":angry:";
 

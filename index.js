@@ -25,7 +25,7 @@ var messaging_commands = {
         };
     },
     'react': message => {
-        reactType = message.split(' ')[1];
+        reactType = message.split(' ')[0];
             
         if (!(reactType in valid_reacts)) {
             reactType = ":angry:";
@@ -41,7 +41,7 @@ login({email: deets.email, password: deets.password}, (err, api) => {
 
     api.listen((err, message) => {
         // text based command, in the form [prefix][command] [message argument (can be empty)]
-        if(message.body.indexOf(COMMAND_PREFIX) > -1) {
+        if(message.body.charAt(0) === COMMAND_PREFIX) {
             var command = message.body.split(' ')[0].substring(COMMAND_PREFIX.length);
             if (!(command in messaging_commands)) {
                 // no op, invalid command

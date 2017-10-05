@@ -25,8 +25,9 @@ var messaging_commands = {
         };
     },
     'react': message => {
-        reactType = message.split(' ')[0];
-            
+
+        reactType = message.replace(/ /g, "");
+
         if (!(reactType in valid_reacts)) {
             reactType = ":angry:";
             return "Invalid react provided, angrily defaulting to angry.";
